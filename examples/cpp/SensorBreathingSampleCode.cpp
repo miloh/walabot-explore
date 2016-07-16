@@ -4,26 +4,26 @@
 #include <string>
 
 #define CHECK_WALABOT_RESULT(result, func_name)					\
-{																\
-	if (result != WALABOT_SUCCESS)								\
-	{															\
+{										\
+	if (result != WALABOT_SUCCESS)						\
+	{									\
 		unsigned int extended = Walabot_GetExtendedError();		\
 		const char* errorStr = Walabot_GetErrorString();		\
-		std::cout << std::endl << "Error at " __FILE__ << ":"	\
+		std::cout << std::endl << "Error at " __FILE__ << ":"		\
                   << std::dec << __LINE__ << " - "				\
 				  << func_name << " result is 0x" << std::hex	\
-                  << result << std::endl;						\
-																\
-		std::cout << "Error string: " << errorStr << std::endl; \
-																\
+                  << result << std::endl;					\
+										\
+		std::cout << "Error string: " << errorStr << std::endl; 	\
+										\
 		std::cout << "Extended error: 0x" << std::hex			\
-                  << extended << std::endl << std::endl;		\
-																\
-		std::cout << "Press enter to continue ...";				\
-		std::string dummy;										\
-		std::getline(std::cin, dummy);							\
-		return;													\
-	}															\
+                  << extended << std::endl << std::endl;			\
+										\
+		std::cout << "Press enter to continue ...";			\
+		std::string dummy;						\
+		std::getline(std::cin, dummy);					\
+		return;								\
+	}									\
 }
 
 void PrintBreathingEnergy(double energy)
