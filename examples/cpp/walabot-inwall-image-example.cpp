@@ -134,17 +134,17 @@ void SensorCode_SampleCode(const char* hostname)
 	// Initialize configuration
 	// ------------------------
 
-	double zArenaMin = 1;
-	double zArenaMax = 30;
-	double zArenaRes = 1;
+	double zArenaMin = 2;
+	double zArenaMax = 12;
+	double zArenaRes = 0.5;
 
-	double xArenaMin = -10;
-	double xArenaMax = 10;
+	double xArenaMin = -6;
+	double xArenaMax = 6;
 	double xArenaRes = 0.5;
 
-	double yArenaMin = -30;
-	double yArenaMax = 30;
-	double yArenaRes = 1;
+	double yArenaMin = -8;
+	double yArenaMax = 8;
+	double yArenaRes = 0.5;
 
 	// ----------------------
 	// Sample Code Start Here
@@ -186,7 +186,6 @@ void SensorCode_SampleCode(const char* hostname)
 	//			-> high-resolution images
 	//			-> slower capture rate 
 	// nope -- set profile to Short Range Imaging!!
-	//res = Walabot_SetProfile(PROF_SHORT_RANGE_SINGLE_LINE);
 	res = Walabot_SetProfile(PROF_SHORT_RANGE_IMAGING);
 	CHECK_WALABOT_RESULT(res, "Walabot_SetProfile");
 
@@ -267,7 +266,7 @@ void SensorCode_SampleCode(const char* hostname)
         UDPFlaschenTaschen canvas(socket, DISPLAY_WIDTH, DISPLAY_HEIGHT);
 	for (int y = 0; y < sizeY; ++y) {
 	  	for (int x = 0; x < sizeX; ++x) {
-    		    canvas.SetPixel(y, x, Color(0,*current_value,0));         // Sample with color variable.
+    		    canvas.SetPixel(x/2, y, Color(0,*current_value,0));         // Sample with color variable.
 		     //fprintf(stderr, "%02x ", *current_value);
 		     ++current_value;
 		}
