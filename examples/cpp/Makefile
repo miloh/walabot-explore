@@ -1,23 +1,22 @@
-CXXFLAGS=-Wall -O2 -D__LINUX__
+FLASCHEN_TASCHEN_API_DIR=ft/api
+CXXFLAGS=-Wall -O2 -I$(FLASCHEN_TASCHEN_API_DIR)/include -I. -D__LINUX__
+
+LDFLAGS=-L$(FLASCHEN_TASCHEN_API_DIR)/lib -lftclient
+FTLIB=$(FLASCHEN_TASCHEN_API_DIR)/lib/libftclient.a
+
 WALABOT_LDFLAGS= -lWalabotAPI
 
-all: sensorTarget sensorBreathing inWall getVersion
+all: getVersion ft-inwall-example ft-raw-example
 
-
-sensorTarget: SensorCodeSample.cpp
-	$(CXX) -o $@.out $< $(CXXFLAGS) $(WALABOT_LDFLAGS)
-sensorBreathing: SensorBreathingSampleCode.cpp
-	$(CXX) -o $@.out $< $(CXXFLAGS) $(WALABOT_LDFLAGS)
-inWall: InWallSampleCode.cpp
-	$(CXX) -o $@.out $< $(CXXFLAGS) $(WALABOT_LDFLAGS)
 getVersion: GetVersion.cpp
 	$(CXX) -o $@.out $< $(CXXFLAGS) $(WALABOT_LDFLAGS)
+ft-inwall-example: walabot-inwall-image-example.cpp
+	$(CXX) -o $@.out $< $(CXXFLAGS) $(LDFLAGS) $(WALABOT_LDFLAGS)
+ft-raw-example:    walabot-raw-image-example.cpp
+	$(CXX) -o $@.out $< $(CXXFLAGS) $(LDFLAGS) $(WALABOT_LDFLAGS)
+
 
 
 clean: 
-	rm -f sensorTarget.out sensorBreathing.out inWall.out getVersion.out
-
-
-
-
+	rm -f sensorTarget sensorBreathing.out inWall.out getVersion.out ft-inwall-image-example.out ft-raw-example.out
 
